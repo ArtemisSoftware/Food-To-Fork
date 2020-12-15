@@ -1,4 +1,4 @@
-package com.artemissoftware.foodtofork.domain.model
+package com.artemissoftware.foodtofork.network.model
 
 import com.google.gson.annotations.SerializedName
 
