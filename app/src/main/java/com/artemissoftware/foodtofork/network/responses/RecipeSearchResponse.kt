@@ -1,13 +1,13 @@
 package com.artemissoftware.foodtofork.network.responses
 
-import com.artemissoftware.foodtofork.network.model.RecipeNetworkEntity
+import com.artemissoftware.foodtofork.network.model.RecipeDto
 import com.google.gson.annotations.SerializedName
 
-class RecipeSearchResponse(
+data class RecipeSearchResponse(
 
     @SerializedName("count")
     var count: Int,
 
     @SerializedName("results")
-    var recipes: List<RecipeNetworkEntity>,
+    var recipes: List<RecipeDto>,
 )

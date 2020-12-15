@@ -1,6 +1,6 @@
 package com.artemissoftware.foodtofork.network
 
-import com.artemissoftware.foodtofork.network.model.RecipeNetworkEntity
+import com.artemissoftware.foodtofork.network.model.RecipeDto
 import com.artemissoftware.foodtofork.network.responses.RecipeSearchResponse
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -20,5 +20,5 @@ interface RecipeApi {
     suspend fun get(
         @Header("Authorization") token: String,
         @Query("id") id: Int
-    ): RecipeNetworkEntity
+    ): RecipeDto
 }
