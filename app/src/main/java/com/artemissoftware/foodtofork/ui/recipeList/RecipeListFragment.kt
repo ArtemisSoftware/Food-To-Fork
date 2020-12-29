@@ -11,6 +11,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Button
 import androidx.compose.material.Text
+import androidx.compose.material.TextField
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.text.TextStyle
@@ -36,6 +39,12 @@ class RecipeListFragment : Fragment(){
             setContent {
 
                 val recipes = viewModel.recipes.value
+
+                val query = remember { mutableStateOf("beef") }
+
+
+                TextField(value= query.value, onValueChange = {viewModel.onQueryChanged(it)})
+
 
                 LazyColumn{
                     itemsIndexed(items = recipes){
