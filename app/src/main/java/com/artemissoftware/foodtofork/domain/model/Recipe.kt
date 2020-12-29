@@ -1,9 +1,7 @@
 package com.artemissoftware.foodtofork.domain.model
 
-import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
 
-@Parcelize
+
 data class Recipe (
 
     val id: Int? = null,
@@ -19,5 +17,4 @@ data class Recipe (
     val dateUpdated: String? = null
 
 
-) : Parcelable {
-}
+)
