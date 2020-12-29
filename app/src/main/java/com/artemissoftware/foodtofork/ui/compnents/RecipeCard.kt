@@ -10,6 +10,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.asAndroidBitmap
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.loadImageResource
@@ -17,6 +18,8 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import com.artemissoftware.foodtofork.R
 import com.artemissoftware.foodtofork.domain.model.Recipe
+import com.artemissoftware.foodtofork.util.DEFAULT_RECIPE_IMAGE
+import com.artemissoftware.foodtofork.util.loadPicture
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalCoroutinesApi
@@ -34,13 +37,20 @@ fun RecipeCard(recipe: Recipe, onClick: () -> Unit){
 
         Column() {
             recipe.featuredImage?.let { url ->
-                Image(
-                        bitmap = imageResource(id = R.drawable.empty_plate),
+                
+                val image = loadPicture(url = url, defaultImage = DEFAULT_RECIPE_IMAGE).value
+
+                image?.let{
+                    Image(
+                        bitmap = it.asImageBitmap(),
                         modifier = Modifier
-                                .fillMaxWidth()
-                                .preferredHeight(225.dp),
+                            .fillMaxWidth()
+                            .preferredHeight(225.dp),
                         contentScale = ContentScale.Crop,
-                )
+                    )
+                }
+
+
             }
             recipe.title?.let { title ->
                 Row(
