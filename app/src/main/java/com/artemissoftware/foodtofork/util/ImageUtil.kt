@@ -24,31 +24,31 @@ fun loadPicture(url: String, @DrawableRes defaultImage: Int): MutableState<Bitma
 
     // show default image while image loads
     Glide.with(AmbientContext.current)
-        .asBitmap()
-        .load(defaultImage)
-        .into(object : CustomTarget<Bitmap>() {
-            override fun onLoadCleared(placeholder: Drawable?) { }
-            override fun onResourceReady(
-                resource: Bitmap,
-                transition: Transition<in Bitmap>?
-            ) {
-                bitmapState.value = resource
-            }
-        })
+            .asBitmap()
+            .load(defaultImage)
+            .into(object : CustomTarget<Bitmap>() {
+                override fun onLoadCleared(placeholder: Drawable?) { }
+                override fun onResourceReady(
+                        resource: Bitmap,
+                        transition: Transition<in Bitmap>?
+                ) {
+                    bitmapState.value = resource
+                }
+            })
 
     // get network image
     Glide.with(AmbientContext.current)
-        .asBitmap()
-        .load(url)
-        .into(object : CustomTarget<Bitmap>() {
-            override fun onLoadCleared(placeholder: Drawable?) { }
-            override fun onResourceReady(
-                resource: Bitmap,
-                transition: Transition<in Bitmap>?
-            ) {
-                bitmapState.value = resource
-            }
-        })
+            .asBitmap()
+            .load(url)
+            .into(object : CustomTarget<Bitmap>() {
+                override fun onLoadCleared(placeholder: Drawable?) { }
+                override fun onResourceReady(
+                        resource: Bitmap,
+                        transition: Transition<in Bitmap>?
+                ) {
+                    bitmapState.value = resource
+                }
+            })
 
     return bitmapState
 }

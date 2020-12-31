@@ -15,6 +15,7 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
@@ -23,8 +24,9 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.artemissoftware.foodtofork.ui.compnents.FoodCategoryChip
 import com.artemissoftware.foodtofork.ui.compnents.RecipeCard
-import com.artemissoftware.foodtofork.util.TAG
+//import com.artemissoftware.foodtofork.ui.compnents.RecipeCard
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -45,7 +47,7 @@ class RecipeListFragment : Fragment(){
 
                 Column {
 
-                    Surface(modifier = Modifier.fillMaxWidth(), color = MaterialTheme.colors.primary, elevation = 8.dp){
+                    Surface(modifier = Modifier.fillMaxWidth(), color = Color.White, elevation = 8.dp){
 
                         Column {
 
@@ -78,11 +80,12 @@ class RecipeListFragment : Fragment(){
 
                             ScrollableRow(modifier = Modifier.padding(start = 8.dp, bottom = 8.dp)) {
                                 for(category in getAllFoodCategories()){
-                                    Text(
-                                            text = category.value,
-                                            style = MaterialTheme.typography.body2,
-                                            color = MaterialTheme.colors.secondary,
-                                            modifier = Modifier.padding(8.dp)
+                                    FoodCategoryChip(
+                                            category = category.value,
+                                            onExecuteSearch = {
+                                                viewModel.onQueryChanged(it)
+                                                viewModel.newSearch(it)
+                                            },
                                     )
                                 }
                             }
