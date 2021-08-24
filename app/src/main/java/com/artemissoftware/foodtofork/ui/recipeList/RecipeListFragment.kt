@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.artemissoftware.foodtofork.ui.compnents.CircularIndeterminateProgressBar
 import com.artemissoftware.foodtofork.ui.compnents.FoodCategoryChip
 import com.artemissoftware.foodtofork.ui.compnents.RecipeCard
 import com.artemissoftware.foodtofork.ui.compnents.SearchAppBar
@@ -49,6 +50,9 @@ class RecipeListFragment : Fragment(){
 
                 val selectedCategory = viewModel.selectedCategory.value
 
+
+                val loading = viewModel.loading.value
+
                 Column {
 
                     SearchAppBar(query = query,
@@ -59,11 +63,17 @@ class RecipeListFragment : Fragment(){
                             onSelectedCategoryChanged = viewModel::onSelectedCategoryChanged,
                             onChangeCategoryScrollPosition = viewModel::onChangeCategoryScrollPosition)
 
-                    LazyColumn {
-                        itemsIndexed(items = recipes){index, recipe ->
-                            RecipeCard(recipe = recipe, onClick = {})
+                    Box(modifier = Modifier.fillMaxSize()) {
+                        LazyColumn {
+                            itemsIndexed(
+                                    items = recipes
+                            ) { index, recipe ->
+                                RecipeCard(recipe = recipe, onClick = {})
+                            }
                         }
+                        CircularIndeterminateProgressBar(isDisplayed = loading)
                     }
+
                 }
             }
         }
