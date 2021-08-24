@@ -1,4 +1,4 @@
-package com.artemissoftware.foodtofork.ui.compnents
+package com.artemissoftware.foodtofork.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
